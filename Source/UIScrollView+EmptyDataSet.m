@@ -445,8 +445,7 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
     {
         // Notifies that the empty dataset view will appear
         [self dzn_willAppear];
-        // 数据为0时顶置 解决滚动后刷新产生的空白页偏移问题
-        [self setContentOffset:CGPointZero animated:NO];//解决问题
+        
         DZNEmptyDataSetView *view = self.emptyDataSetView;
         
         // Configure empty dataset fade in display
@@ -927,7 +926,7 @@ Class dzn_baseClassToSwizzleForTarget(id target)
     [self addConstraint:centerXConstraint];
     [self addConstraint:centerYConstraint];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
     
     // When a custom offset is available, we adjust the vertical constraints' constants
     if (self.verticalOffset != 0 && self.constraints.count > 0) {
