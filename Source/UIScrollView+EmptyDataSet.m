@@ -445,7 +445,8 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
     {
         // Notifies that the empty dataset view will appear
         [self dzn_willAppear];
-        
+        // 数据为0时顶置 解决滚动后刷新产生的空白页偏移问题
+        [self setContentOffset:CGPointZero animated:NO];//解决问题
         DZNEmptyDataSetView *view = self.emptyDataSetView;
         
         // Configure empty dataset fade in display
